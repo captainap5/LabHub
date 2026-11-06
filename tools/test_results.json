@@ -1,0 +1,264 @@
+{
+  "total": 32,
+  "passed": 32,
+  "failed": 0,
+  "pass_rate": 100.0,
+  "cases": [
+    {
+      "id": "TC-01",
+      "name": "学生使用正确口令登录",
+      "expect": "200 且返回用户信息",
+      "actual": 200,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-02",
+      "name": "错误口令登录被拒绝",
+      "expect": "401 AUTH_401",
+      "actual": 401,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-03",
+      "name": "未登录访问受保护接口",
+      "expect": "401",
+      "actual": 401,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-04",
+      "name": "学生访问管理员接口",
+      "expect": "403 AUTH_403",
+      "actual": 403,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-05",
+      "name": "按类别筛选设备",
+      "expect": "仅返回增材制造设备",
+      "actual": "1 条，类别一致=True",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-06",
+      "name": "即约即用设备提交预约",
+      "expect": "201 且状态 APPROVED",
+      "actual": "201 APPROVED",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-07",
+      "name": "同设备同时段重复预约",
+      "expect": "409 RES_409 并给出冲突时段",
+      "actual": 409,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-08",
+      "name": "结束时间早于开始时间",
+      "expect": "400 参数校验失败",
+      "actual": 400,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-09",
+      "name": "超出设备单次最长时长",
+      "expect": "422 业务规则拦截",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-10",
+      "name": "预约时间早于开放时间",
+      "expect": "422 提示开放时间",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-11",
+      "name": "预约已过去的时段",
+      "expect": "422 拦截",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-12",
+      "name": "超过 7 天预约窗口",
+      "expect": "422 拦截",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-13",
+      "name": "跨开放时间边界预约",
+      "expect": "422 拦截",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-14",
+      "name": "需审批设备提交后进入待审批",
+      "expect": "201 且状态 PENDING",
+      "actual": "201 PENDING",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-15",
+      "name": "信用分低于 60 的用户预约",
+      "expect": "422 提示信用分不足",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-16",
+      "name": "管理员发起预约",
+      "expect": "403 角色不允许",
+      "actual": 403,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-17",
+      "name": "教师审批通过预约",
+      "expect": "200 且状态 APPROVED",
+      "actual": "200 APPROVED",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-18",
+      "name": "重复审批同一预约",
+      "expect": "409 状态冲突",
+      "actual": 409,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-19",
+      "name": "学生调用审批接口",
+      "expect": "403 无权操作",
+      "actual": 403,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-20",
+      "name": "预约开始前 15 分钟内签到",
+      "expect": "200 且状态 CHECKED_IN",
+      "actual": "200 CHECKED_IN",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-21",
+      "name": "已签到预约执行签退",
+      "expect": "200 COMPLETED 且信用分 +2",
+      "actual": "200 COMPLETED credit=97",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-22",
+      "name": "提前 3 小时签到",
+      "expect": "422 提示未到签到时间",
+      "actual": 422,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-23",
+      "name": "提前 2 小时以上取消预约",
+      "expect": "200 且不扣信用分",
+      "actual": "200 delta=0",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-24",
+      "name": "重复取消已取消预约",
+      "expect": "409 状态冲突",
+      "actual": 409,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-25",
+      "name": "管理员新增设备",
+      "expect": "201 返回新设备 ID",
+      "actual": "201 9",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-26",
+      "name": "新增重复编号设备",
+      "expect": "409 编号冲突",
+      "actual": 409,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-27",
+      "name": "修改设备状态为维护中",
+      "expect": "200 更新成功",
+      "actual": 200,
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-28",
+      "name": "管理员调整用户信用分",
+      "expect": "200 返回新分值",
+      "actual": "200 credit=65",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-29",
+      "name": "查询审计日志",
+      "expect": "200 且包含本次操作记录",
+      "actual": "200 18 条",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-30",
+      "name": "管理员查看统计概览",
+      "expect": "200 含状态分布与热门设备",
+      "actual": "200 total=13",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-31",
+      "name": "手动触发爽约扫描",
+      "expect": "200 返回影响条数",
+      "actual": "200 affected=1",
+      "passed": true,
+      "note": ""
+    },
+    {
+      "id": "TC-32",
+      "name": "教师查看全量预约台账",
+      "expect": "200 且条数不少于学生视角",
+      "actual": "200 13 条",
+      "passed": true,
+      "note": ""
+    }
+  ]
+}
